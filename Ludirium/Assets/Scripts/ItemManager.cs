@@ -8,18 +8,24 @@ public class ItemManager : MonoBehaviour {
     public GameObject gear;
     public GameObject spring;
     public GameObject screw;
+    public GameObject oil;
 
     private void Awake() {
         Instance = this;
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public GameObject GetGameObjectFromEnum(Statics.Items item) {
+        switch (item) {
+            case Statics.Items.GEAR:
+                return gear;
+            case Statics.Items.SPRING:
+                return spring;
+            case Statics.Items.SCREW:
+                return screw;
+            case Statics.Items.OIL:
+                return oil;
+            default:
+                return null;
+        }
+    }
 }

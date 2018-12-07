@@ -54,3 +54,4 @@ MonoBehaviour:
   gear: {fileID: 1246887188591300, guid: 5c96b4e3f8968b84c9a347e6a72ffc35, type: 2}
   spring: {fileID: 1789712881270612, guid: eba56579b30e07e48bba68a5b256d887, type: 2}
   screw: {fileID: 1811749821285506, guid: 6701a1d0d6e020741b991e87cf692d3a, type: 2}
+  oil: {fileID: 1885422456005638, guid: b212a8ad876e0e24c89c88bc56a56189, type: 2}

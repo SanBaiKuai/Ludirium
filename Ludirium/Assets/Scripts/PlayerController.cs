@@ -70,8 +70,13 @@ public class PlayerController : MonoBehaviour {
                             case Statics.Items.SCREW:
                                 actualItems[i] = Instantiate(ItemManager.Instance.screw);
                                 break;
+                            case Statics.Items.OIL:
+                                //do some oily shit
+                                interactable.GetComponent<Factory>().TakeItem();
+                                break;
                         }
                         if (actualItems[i] != null) {
+                            interactable.GetComponent<Factory>().TakeItem();
                             actualItems[i].transform.parent = spawnPoints[i].transform;
                             actualItems[i].transform.position = spawnPoints[i].transform.position;
                             numItemsHeld += 1;

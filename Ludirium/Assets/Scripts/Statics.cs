@@ -8,7 +8,8 @@ public static class Statics {
         NONE,
         GEAR,
         SPRING,
-        SCREW
+        SCREW,
+        OIL
     }
 
 }

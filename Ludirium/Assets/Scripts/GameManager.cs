@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    public static GameManager Instance { get; private set; }
     public GameObject[] componentList;
     public float energyStored;
     public float decayRate;
 
-    private int updateTime = 1;
+    public int updateTime = 1;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake() {
+        Instance = this;
+    }
+
+    // Use this for initialization
+    void Start () {
         energyStored = 100f;
         decayRate = 0.5f;
 	}
