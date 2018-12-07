@@ -10,6 +10,8 @@ public class ComponentController : MonoBehaviour {
     public int currRepairItemsCount;
     public Statics.Items[] currRepairItems;
     public Statics.Items[] repairItems;
+    public Transform[] positions = new Transform[2];
+    public GameObject[] shownObjects = new GameObject[2];
 
     public bool isBroken;
 
@@ -58,6 +60,9 @@ public class ComponentController : MonoBehaviour {
 
                         currRepairItems[i] = Statics.Items.NONE;
                         currRepairItemsCount--;
+
+                        Destroy(shownObjects[i]);
+
                         break;
                     }
                 }
@@ -90,6 +95,8 @@ public class ComponentController : MonoBehaviour {
                 for(int i = 0; i < currRepairItemsCount; i++)
                 {
                     currRepairItems[i] = repairItems[Random.Range(0, repairItems.Length)];
+                    shownObjects[i] = Instantiate(ItemManager.Instance.GetNoBoxObjectFromEnum(currRepairItems[i]), positions[i]);
+                    shownObjects[i].transform.position = positions[i].position;
                 }
                 return 1;
             }

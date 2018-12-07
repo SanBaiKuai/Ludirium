@@ -9,6 +9,9 @@ public class ItemManager : MonoBehaviour {
     public GameObject spring;
     public GameObject screw;
     public GameObject oil;
+    public GameObject gearNoBox;
+    public GameObject springNoBox;
+    public GameObject screwNoBox;
 
     private void Awake() {
         Instance = this;
@@ -24,6 +27,19 @@ public class ItemManager : MonoBehaviour {
                 return screw;
             case Statics.Items.OIL:
                 return oil;
+            default:
+                return null;
+        }
+    }
+
+    public GameObject GetNoBoxObjectFromEnum(Statics.Items item) {
+        switch (item) {
+            case Statics.Items.GEAR:
+                return gearNoBox;
+            case Statics.Items.SPRING:
+                return springNoBox;
+            case Statics.Items.SCREW:
+                return screwNoBox;
             default:
                 return null;
         }
