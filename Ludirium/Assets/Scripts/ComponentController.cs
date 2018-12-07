@@ -5,6 +5,8 @@ using UnityEngine;
 public class ComponentController : MonoBehaviour {
     public float decayRate;
     public float health;
+    public int minTime = 5;
+    public int maxTime = 15;
     public int currRepairItemsCount;
     public Statics.Items[] currRepairItems;
     public Statics.Items[] repairItems;
@@ -15,7 +17,7 @@ public class ComponentController : MonoBehaviour {
 	void Start () {
         isBroken = false;
         health = 100f;
-        decayRate = Random.Range(5, 15);
+        decayRate = Random.Range(minTime, maxTime);
 
     }
 	
@@ -53,7 +55,7 @@ public class ComponentController : MonoBehaviour {
             {
                 isBroken = false;
                 health = 100f;
-                decayRate = Random.Range(5, 15);
+                decayRate = Random.Range(minTime, maxTime); ;
             }
     }
 
