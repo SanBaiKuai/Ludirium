@@ -7,8 +7,8 @@ public class Gearbox : MonoBehaviour {
     private Animator anim;
     private ComponentController cc;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         anim = GetComponent<Animator>();
         cc = GetComponent<ComponentController>();
 	}
@@ -31,5 +31,15 @@ public class Gearbox : MonoBehaviour {
 
     public void Fix() {
         anim.enabled = true;
+    }
+
+    public bool isBroken()
+    {
+        return (cc.isBroken);
+    }
+
+    public void wind()
+    {
+        GameManager.Instance.energyStored = 100f;
     }
 }

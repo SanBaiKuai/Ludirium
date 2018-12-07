@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public float decayRate;
 
     public int updateTime = 1;
+    private int brokenItems;
 
     private void Awake() {
         Instance = this;
@@ -29,12 +30,13 @@ public class GameManager : MonoBehaviour {
         }
         if(Time.time>= updateTime)
         {
+            brokenItems = 0;
             updateTime = Mathf.FloorToInt(Time.time) + 1;
             foreach (GameObject component in componentList)
             {
-                component.GetComponent<ComponentController>().decay();
+                brokenItems += component.GetComponent<ComponentController>().decay();
             }
-            energyStored -= decayRate;
+            energyStored -= decayRate * (1.0f + brokenItems);
             CanvasManager.Instance.UpdateCurrTime(updateTime);
         }
 		

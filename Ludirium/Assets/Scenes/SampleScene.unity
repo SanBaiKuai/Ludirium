@@ -288,6 +288,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 19.725
       objectReference: {fileID: 0}
+    - target: {fileID: 1343913124380686, guid: 6092b326807b73042aefa3373d83b1b7, type: 2}
+      propertyPath: m_TagString
+      value: MainSpring
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6092b326807b73042aefa3373d83b1b7, type: 2}
   m_IsPrefabAsset: 0
@@ -426,6 +430,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &623186309 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1413797973421696, guid: 9be7cdb3073d3d44aa958cec4b970812,
+    type: 2}
+  m_PrefabInternal: {fileID: 1692370497}
 --- !u!1 &648506520 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1840201286134280, guid: 061514a2d54c4514db0b2971afa1ed50,
@@ -461,6 +470,10 @@ MonoBehaviour:
   componentList:
   - {fileID: 648506520}
   - {fileID: 1357253878}
+  - {fileID: 1631034280}
+  - {fileID: 1124082274}
+  - {fileID: 623186309}
+  - {fileID: 1097599409}
   energyStored: 100
   decayRate: 0.5
   updateTime: 1
@@ -586,6 +599,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4424145424223972, guid: eb7347615ab5d794493a4e6b2ac52769,
     type: 2}
   m_PrefabInternal: {fileID: 1126874493}
+--- !u!1 &1097599409 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1343913124380686, guid: 6092b326807b73042aefa3373d83b1b7,
+    type: 2}
+  m_PrefabInternal: {fileID: 341475854}
 --- !u!1001 &1119299115
 Prefab:
   m_ObjectHideFlags: 0
@@ -706,6 +724,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58c17d12643b0fe4689183a6d1ffeccc, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1124082274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1908495128241000, guid: f35e022febd1de34e9e953ebb5b81417,
+    type: 2}
+  m_PrefabInternal: {fileID: 699064386}
 --- !u!1001 &1126874493
 Prefab:
   m_ObjectHideFlags: 0
@@ -819,6 +842,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1840125515240518, guid: e0f339c5997d1ad40bc2d71881dd1676,
     type: 2}
   m_PrefabInternal: {fileID: 457551381}
+--- !u!1 &1631034280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1314438251132738, guid: 076f0bc0fb9191f438cef2e318e3b8df,
+    type: 2}
+  m_PrefabInternal: {fileID: 94929994}
 --- !u!1001 &1692370497
 Prefab:
   m_ObjectHideFlags: 0

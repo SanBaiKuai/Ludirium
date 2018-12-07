@@ -52,6 +52,18 @@ public class PlayerController : MonoBehaviour {
                 interactable = other.gameObject;
                 CanvasManager.Instance.ShowBottomLeftText("Press Q to dump all items");
             }
+        } else if (other.tag == "MainSpring")
+        {
+            canInteract = true;
+            interactable = other.gameObject;
+            if (interactable.GetComponent<Gearbox>().isBroken())
+            {
+                currComp = interactable.GetComponent<ComponentController>();
+                CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+            } else
+            {
+                CanvasManager.Instance.ShowBottomLeftText("Press Q to wind the main spring");
+            }
         }
     }
 
@@ -121,10 +133,17 @@ public class PlayerController : MonoBehaviour {
 
             else if (interactable.tag == "Component" && currComp.isBroken)
             {
-                //Debug.Log("Attempting Repair");
                 currComp.repair();
+            } else if (interactable.tag == "MainSpring")
+            {
+                if(interactable.GetComponent<Gearbox>().isBroken())
+                {
+                    currComp.repair();
+                } else
+                {
+                    interactable.GetComponent<Gearbox>().wind();
+                }
             }
-
             else if (interactable.tag == "Recycling" && inventory[0] != Statics.Items.NONE) {
                 for (int i = 0; i < MAX_ITEMS_HELD; i++) {
                     inventory[i] = Statics.Items.NONE;

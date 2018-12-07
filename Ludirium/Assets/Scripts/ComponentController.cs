@@ -76,8 +76,8 @@ public class ComponentController : MonoBehaviour {
                 decayRate = Random.Range(minTime, maxTime); ;
             }
     }
-
-    public void decay()
+    //returns 1 if broken, 0 otherwise
+    public int decay()
     {
         if (!isBroken)
         {
@@ -86,12 +86,17 @@ public class ComponentController : MonoBehaviour {
             {
                 health = 0;
                 isBroken = true;
-                currRepairItemsCount = Random.Range(1, repairItems.Length + 1);
+                currRepairItemsCount = Random.Range(1, Mathf.Min(3, repairItems.Length + 1));
                 for(int i = 0; i < currRepairItemsCount; i++)
                 {
                     currRepairItems[i] = repairItems[Random.Range(0, repairItems.Length)];
                 }
+                return 1;
             }
+            return 0;
+        } else
+        {
+            return 1;
         }
     }
 }
