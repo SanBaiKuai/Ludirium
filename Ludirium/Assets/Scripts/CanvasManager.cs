@@ -84,11 +84,15 @@ public class CanvasManager : MonoBehaviour {
     public void TurnDark() {
         maskCircle.enabled = true;
         maskFull.enabled = true;
+        currTime.color = Color.white;
+        bestTime.color = Color.white;
     }
 
     public void TurnBright() {
         maskCircle.enabled = false;
         maskFull.enabled = false;
+        currTime.color = Color.black;
+        bestTime.color = Color.black;
     }
 
     public void GameOver() {
