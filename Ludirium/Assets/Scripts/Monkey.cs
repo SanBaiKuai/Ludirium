@@ -22,7 +22,7 @@ public class Monkey : MonoBehaviour {
             if (cc.isBroken) {
                 Break();
             } else {
-                Fix();
+                StartCoroutine(Fix());
             }
             isBroken = cc.isBroken;
         }
@@ -33,9 +33,10 @@ public class Monkey : MonoBehaviour {
         StartCoroutine(TurnDown());
     }
 
-    public void Fix() {
-        anim.SetBool("Broken", false);
+    public IEnumerator Fix() {
         StartCoroutine(TurnUp());
+        yield return new WaitForSeconds(PlayerController.Instance.timeToFix);
+        anim.SetBool("Broken", false);
     }
 
     IEnumerator TurnUp() {

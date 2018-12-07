@@ -40,6 +40,8 @@ public class ComponentController : MonoBehaviour {
                     Statics.Items currItem = PlayerController.Instance.inventory[j];
                     if (repairItem == currItem)
                     {
+                        StartCoroutine(PlayerController.Instance.FixShit());
+                        StartCoroutine(SmokeManager.Instance.StartSmoke());
                         PlayerController.Instance.inventory[j] = Statics.Items.NONE;
                         Destroy(PlayerController.Instance.actualItems[j]);
                         for (int k = j + 1; k < PlayerController.Instance.numItemsHeld; k++) {

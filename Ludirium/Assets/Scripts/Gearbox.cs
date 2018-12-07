@@ -20,7 +20,7 @@ public class Gearbox : MonoBehaviour {
             Break();
         } else
         {
-            Fix();
+            StartCoroutine(Fix());
         }
 		
 	}
@@ -29,7 +29,8 @@ public class Gearbox : MonoBehaviour {
         anim.enabled = false;
     }
 
-    public void Fix() {
+    public IEnumerator Fix() {
+        yield return new WaitForSeconds(PlayerController.Instance.timeToFix);
         anim.enabled = true;
     }
 

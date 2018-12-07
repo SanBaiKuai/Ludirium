@@ -52,6 +52,9 @@ TagManager:
   - name: Components
     uniqueID: 3063930219
     locked: 0
+  - name: Smoke
+    uniqueID: 2394026205
+    locked: 0
   - name: SpawnedItems
     uniqueID: 1628338441
     locked: 0

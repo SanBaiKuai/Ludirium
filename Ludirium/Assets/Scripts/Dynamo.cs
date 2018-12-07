@@ -23,7 +23,7 @@ public class Dynamo : MonoBehaviour {
         }
         else
         {
-            Fix();
+            StartCoroutine(Fix());
         }
 
     }
@@ -33,7 +33,8 @@ public class Dynamo : MonoBehaviour {
         CanvasManager.Instance.TurnDark();
     }
 
-    public void Fix() {
+    public IEnumerator Fix() {
+        yield return new WaitForSeconds(PlayerController.Instance.timeToFix);
         sr.sprite = on;
         CanvasManager.Instance.TurnBright();
     }

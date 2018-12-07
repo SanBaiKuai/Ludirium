@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
     public Statics.Items[] inventory = new Statics.Items[MAX_ITEMS_HELD];
     public GameObject[] actualItems = new GameObject[MAX_ITEMS_HELD];
     public Transform[] spawnPoints;
+    public float timeToFix = 2.5f;
 
     private ComponentController currComp;
 
@@ -159,5 +160,17 @@ public class PlayerController : MonoBehaviour {
     IEnumerator SpeedUpCountDown() {
         yield return new WaitForSeconds(5f);
         WorldController.Instance.speed = 50f;
+    }
+
+    public IEnumerator FixShit() {
+        WorldController.Instance.canMove = false;
+        for (int i = 0; i < 5; i++) {
+            transform.position = new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(0, 4f), transform.position.z);
+            transform.RotateAround(transform.position, Vector3.forward, Random.Range(-180f, 180f));
+            yield return new WaitForSeconds(timeToFix/5);
+        }
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        WorldController.Instance.canMove = true;
     }
 }
