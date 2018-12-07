@@ -36,13 +36,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1840125515240518}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0077958, y: 0.5015124, z: 0}
-  m_LocalScale: {x: 0.03538331, y: 0.03538331, z: 0.03538331}
+  m_LocalRotation: {x: -0, y: -0, z: 0.24923593, w: 0.96844286}
+  m_LocalPosition: {x: -0.3701, y: 0.4117, z: 0}
+  m_LocalScale: {x: 0.0110179745, y: 0.0110179745, z: 0.011017974}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 28.865002}
 --- !u!65 &65132658711506176
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -80,10 +80,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decayRate: 0
-  health: 0
+  health: 100
+  minTime: 5
+  maxTime: 15
   currRepairItemsCount: 0
-  currRepairItems: 
-  repairItems: 
+  currRepairItems: 000000000000000000000000
+  repairItems: 010000000200000003000000
   isBroken: 0
 --- !u!212 &212302104052940102
 SpriteRenderer:
@@ -119,7 +121,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c51e7bc83e8aa9c4b878643c0a52b2ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

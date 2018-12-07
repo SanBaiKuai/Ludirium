@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 65639970301594940}
   m_Layer: 0
   m_Name: Monkey
-  m_TagString: Untagged
+  m_TagString: Component
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,13 +37,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1840201286134280}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.4628137, y: 0.60682374, z: 0}
-  m_LocalScale: {x: 0.03538331, y: 0.03538331, z: 0.03538331}
+  m_LocalRotation: {x: -0, y: -0, z: -0.39905372, w: 0.9169276}
+  m_LocalPosition: {x: 0.4256612, y: 0.35489464, z: 0}
+  m_LocalScale: {x: 0.011974314, y: 0.011974314, z: 0.011974314}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -47.038002}
 --- !u!65 &65639970301594940
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -97,10 +97,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   decayRate: 0
-  health: 0
+  health: 100
+  minTime: 5
+  maxTime: 15
   currRepairItemsCount: 0
-  currRepairItems: 
-  repairItems: 
+  currRepairItems: 000000000000000000000000
+  repairItems: 010000000200000003000000
   isBroken: 0
 --- !u!212 &212016311404685834
 SpriteRenderer:
