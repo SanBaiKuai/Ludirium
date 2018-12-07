@@ -10,6 +10,8 @@ public class CanvasManager : MonoBehaviour {
     public Text currTime;
     public Text bestTime;
     public GameObject pauseText;
+    public Image maskFull;
+    public Image maskCircle;
     private GameObject pauseTextObj;
     public bool paused;
 
@@ -69,5 +71,15 @@ public class CanvasManager : MonoBehaviour {
         } else {
             Time.timeScale = 1;
         }
+    }
+
+    public void TurnDark() {
+        maskCircle.enabled = true;
+        maskFull.enabled = true;
+    }
+
+    public void TurnBright() {
+        maskCircle.enabled = false;
+        maskFull.enabled = false;
     }
 }

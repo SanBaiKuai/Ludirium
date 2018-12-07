@@ -30,9 +30,11 @@ public class Dynamo : MonoBehaviour {
 
     public void Break() {
         sr.sprite = off;
+        CanvasManager.Instance.TurnDark();
     }
 
     public void Fix() {
         sr.sprite = on;
+        CanvasManager.Instance.TurnBright();
     }
 }
