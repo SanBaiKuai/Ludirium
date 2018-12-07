@@ -54,11 +54,14 @@ public class PlayerController : MonoBehaviour {
             if (prevInteractable == null) {
                 canInteract = false;
                 interactable = null;
+                currComp = null;
                 CanvasManager.Instance.HideBottomLeftText();
             } else {    // it's definitely a component
                 interactable = prevInteractable;
                 prevInteractable = null;
-                CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+                if (currComp.isBroken) {
+                    CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+                }
             }
         }
     }
@@ -113,6 +116,24 @@ public class PlayerController : MonoBehaviour {
             {
                 //Debug.Log("Attempting Repair");
                 currComp.repair(inventory);
+                for (int i = 0; i < MAX_ITEMS_HELD; i++) {
+                    if (inventory[i] == Statics.Items.NONE) {
+                        if (actualItems[i] != null) {
+                            Destroy(actualItems[i]);
+                            numItemsHeld -= 1;
+                            if (i < MAX_ITEMS_HELD - 1 && inventory[i + 1] != Statics.Items.NONE) {
+                                for (int j = i + 1; j < MAX_ITEMS_HELD; j++) {
+                                    if (inventory[j] == Statics.Items.NONE) {
+                                        break;
+                                    }
+                                    inventory[j - 1] = inventory[j];
+                                    actualItems[j - 1] = actualItems[j];
+                                    actualItems[j - 1].transform.position = spawnPoints[j - 1].position;
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             else if (interactable.tag == "Recycling" && inventory[0] != Statics.Items.NONE) {
