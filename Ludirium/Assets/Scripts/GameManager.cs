@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         if(energyStored <= 0)
         {
-            
+            PlayerPrefs.SetInt("bestTime", updateTime);
         }
         if(Time.time>= updateTime)
         {
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
                 component.GetComponent<ComponentController>().decay();
             }
             energyStored -= decayRate;
+            CanvasManager.Instance.UpdateCurrTime(updateTime);
         }
 		
 	}

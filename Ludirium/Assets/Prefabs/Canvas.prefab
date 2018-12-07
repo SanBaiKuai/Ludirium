@@ -148,9 +148,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Curr Time
-
-'
+  m_Text: 0:01
 --- !u!114 &114201099746193464
 MonoBehaviour:
   m_ObjectHideFlags: 1

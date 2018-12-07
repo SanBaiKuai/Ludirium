@@ -1064,6 +1064,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayRate: 0
   health: 0
+  minTime: 5
+  maxTime: 15
   currRepairItemsCount: 0
   currRepairItems: 
   repairItems: 

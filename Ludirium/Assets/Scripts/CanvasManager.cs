@@ -21,6 +21,10 @@ public class CanvasManager : MonoBehaviour {
     void Start () {
 		if (PlayerPrefs.HasKey("bestTime")) {
             // set best time text
+            bestTime.text = "Best Time\n" + PlayerPrefs.GetInt("bestTime") / 60 + (PlayerPrefs.GetInt("bestTime") % 60).ToString("00");
+        }
+        else {
+            bestTime.text = "Best Time\n--:--";
         }
 	}
 	
@@ -30,8 +34,9 @@ public class CanvasManager : MonoBehaviour {
 	}
 
     // call this from gamemanager
-    public void UpdateCurrTime(int currTime) {
+    public void UpdateCurrTime(int currTimeTime) {
         // set curr time text
+        currTime.text = "" + currTimeTime/60 + ":" + (currTimeTime%60).ToString("00");
     }
 
     public void ShowBottomLeftText() {
