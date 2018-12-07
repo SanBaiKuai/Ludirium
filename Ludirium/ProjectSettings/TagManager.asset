@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Component
   - Factory
+  - Recycling
   layers:
   - Default
   - TransparentFX

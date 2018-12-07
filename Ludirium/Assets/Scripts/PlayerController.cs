@@ -6,10 +6,11 @@ public class PlayerController : MonoBehaviour {
 
     private static readonly int MAX_ITEMS_HELD = 3;
     public bool canInteract = false;   // true if currently can interact with some object
-    public bool isFullLoad = false; // true if currently holding max number of items 
+    public int numItemsHeld = 0;
     GameObject interactable;
     //public GameObject[] inventory = new GameObject[3];
     public Statics.Items[] inventory = new Statics.Items[MAX_ITEMS_HELD];
+    public GameObject[] actualItems = new GameObject[MAX_ITEMS_HELD];
     public Transform[] spawnPoints;
 
 	// Use this for initialization
@@ -26,11 +27,17 @@ public class PlayerController : MonoBehaviour {
             CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
         } else if (other.tag == "Factory") {
             canInteract = true;
-            if (isFullLoad) {
+            if (numItemsHeld == MAX_ITEMS_HELD) {
                 CanvasManager.Instance.ShowBottomLeftText("Inventory full!");
             } else {
                 interactable = other.gameObject;
                 CanvasManager.Instance.ShowBottomLeftText("Press Q to pick up");
+            }
+        } else if (other.tag == "Recycling") {
+            canInteract = true;
+            if (numItemsHeld != 0) {
+                interactable = other.gameObject;
+                CanvasManager.Instance.ShowBottomLeftText("Press Q to dump all items");
             }
         }
     }
@@ -45,36 +52,41 @@ public class PlayerController : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if (canInteract && Input.GetKeyDown(KeyCode.Q)) {
+		if (canInteract && interactable != null && Input.GetKeyDown(KeyCode.Q)) {
             // do the interaction shit here
-            if (interactable.tag == "Factory") {
+            if (interactable.tag == "Factory" && inventory[MAX_ITEMS_HELD - 1] == Statics.Items.NONE) {
                 for (int i = 0; i < MAX_ITEMS_HELD; i++) {
                     if (inventory[i] == Statics.Items.NONE) {
                         inventory[i] = interactable.GetComponent<Factory>().item;
-                        GameObject newItem = null;
                         switch (inventory[i]) {
                             case Statics.Items.NONE:
                                 break;
                             case Statics.Items.GEAR:
-                                newItem = Instantiate(ItemManager.Instance.gear);
+                                actualItems[i] = Instantiate(ItemManager.Instance.gear);
                                 break;
                             case Statics.Items.SPRING:
-                                newItem = Instantiate(ItemManager.Instance.spring);
+                                actualItems[i] = Instantiate(ItemManager.Instance.spring);
                                 break;
                             case Statics.Items.SCREW:
-                                newItem = Instantiate(ItemManager.Instance.screw);
+                                actualItems[i] = Instantiate(ItemManager.Instance.screw);
                                 break;
                         }
-                        if (newItem != null) {
-                            newItem.transform.parent = spawnPoints[i].transform;
-                            newItem.transform.position = spawnPoints[i].transform.position;
-                        }
-                        if (i == MAX_ITEMS_HELD - 1) {
-                            isFullLoad = true;
+                        if (actualItems[i] != null) {
+                            actualItems[i].transform.parent = spawnPoints[i].transform;
+                            actualItems[i].transform.position = spawnPoints[i].transform.position;
+                            numItemsHeld += 1;
                         }
                         break;
                     }
                 }
+            }
+
+            else if (interactable.tag == "Recycling" && inventory[0] != Statics.Items.NONE) {
+                for (int i = 0; i < MAX_ITEMS_HELD; i++) {
+                    inventory[i] = Statics.Items.NONE;
+                    Destroy(actualItems[i]);
+                }
+                numItemsHeld = 0;
             }
         }
 	}

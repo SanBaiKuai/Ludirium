@@ -229,8 +229,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteract: 0
-  isFullLoad: 0
+  numItemsHeld: 0
   inventory: 000000000000000000000000
+  actualItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnPoints:
   - {fileID: 4677178443205988}
   - {fileID: 4793950150485290}
