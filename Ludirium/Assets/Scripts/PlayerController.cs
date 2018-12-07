@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour {
 
     public bool canInteract = false;   // true if currently can interact with some object
     GameObject interactable;
-    public GameObject[] inventory = new GameObject[3];
+    //public GameObject[] inventory = new GameObject[3];
+    public Statics.Items[] inventory = new Statics.Items[3];
     public Transform[] spawnPoints;
 
 	// Use this for initialization
@@ -41,9 +42,6 @@ public class PlayerController : MonoBehaviour {
             if (interactable.tag == "Factory") {
                 for (int i = 0; i < 3; i++) {
                     if (inventory[i] == null) {
-                        inventory[i] = interactable.GetComponent<Factory>().item;
-                        inventory[i].transform.position = spawnPoints[i].transform.position;
-                        Instantiate(inventory[i]);
                         break;
                     }
                 }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class Factory : MonoBehaviour {
 
-    public GameObject item;
+    public Statics.Items item;
 }
