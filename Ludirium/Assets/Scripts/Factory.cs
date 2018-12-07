@@ -7,7 +7,7 @@ public class Factory : MonoBehaviour {
     public Statics.Items item;
     private GameObject go;
     public Transform spawnPoint;
-    private int lastTime = 0;
+    public int lastTime = 0;
     public int interval = 1;
     bool hasItem;
 

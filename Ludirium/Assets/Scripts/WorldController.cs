@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class WorldController : MonoBehaviour {
 
+    public static WorldController Instance { get; private set; }
+
     public float speed = 50.0f;
+
+    private void Awake() {
+        Instance = this;
+    }
 
     // Use this for initialization
     void Start () {

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public bool canInteract = false;   // true if currently can interact with some object
     public int numItemsHeld = 0;
     GameObject interactable;
+    GameObject prevInteractable;
     //public GameObject[] inventory = new GameObject[3];
     public Statics.Items[] inventory = new Statics.Items[MAX_ITEMS_HELD];
     public GameObject[] actualItems = new GameObject[MAX_ITEMS_HELD];
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour {
             }
         } else if (other.tag == "Item") {
             canInteract = true;
+            prevInteractable = interactable;
             if (numItemsHeld == MAX_ITEMS_HELD) {
                 CanvasManager.Instance.ShowBottomLeftText("Inventory full!");
             } else {
@@ -49,9 +51,15 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerExit(Collider other) {
         if (canInteract) {
-            canInteract = false;
-            interactable = null;
-            CanvasManager.Instance.HideBottomLeftText();
+            if (prevInteractable == null) {
+                canInteract = false;
+                interactable = null;
+                CanvasManager.Instance.HideBottomLeftText();
+            } else {    // it's definitely a component
+                interactable = prevInteractable;
+                prevInteractable = null;
+                CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+            }
         }
     }
 
@@ -59,34 +67,44 @@ public class PlayerController : MonoBehaviour {
     void Update () {
 		if (canInteract && interactable != null && Input.GetKeyDown(KeyCode.Q)) {
             // do the interaction shit here
-            if (interactable.tag == "Item" && inventory[MAX_ITEMS_HELD - 1] == Statics.Items.NONE) {
-                for (int i = 0; i < MAX_ITEMS_HELD; i++) {
-                    if (inventory[i] == Statics.Items.NONE) {
-                        inventory[i] = interactable.GetComponent<Factory>().item;
-                        switch (inventory[i]) {
-                            case Statics.Items.NONE:
+            if (interactable.tag == "Item") {
+                {
+                    if (interactable.name.Contains("Can")) {
+                        prevInteractable.GetComponent<Factory>().TakeItem();
+                        interactable = prevInteractable;
+                        CanvasManager.Instance.ShowBottomLeftText("Gotta go fast!");
+                        interactable.GetComponent<Factory>().lastTime = GameManager.Instance.updateTime;
+                        WorldController.Instance.speed = 75f;
+                        StartCoroutine("SpeedUpCountDown");
+                    } else if (inventory[MAX_ITEMS_HELD - 1] == Statics.Items.NONE) {
+                        for (int i = 0; i < MAX_ITEMS_HELD; i++) {
+                            if (inventory[i] == Statics.Items.NONE) {
+                                switch (interactable.name.Substring(0, 3)) {
+                                    case "Gea":
+                                        inventory[i] = Statics.Items.GEAR;
+                                        actualItems[i] = Instantiate(ItemManager.Instance.gear);
+                                        break;
+                                    case "Spr":
+                                        inventory[i] = Statics.Items.SPRING;
+                                        actualItems[i] = Instantiate(ItemManager.Instance.spring);
+                                        break;
+                                    case "Scr":
+                                        inventory[i] = Statics.Items.SCREW;
+                                        actualItems[i] = Instantiate(ItemManager.Instance.screw);
+                                        break;
+                                }
+                                if (actualItems[i] != null) {
+                                    prevInteractable.GetComponent<Factory>().TakeItem();
+                                    interactable = prevInteractable;
+                                    CanvasManager.Instance.ShowBottomLeftText("Obtained " + interactable.GetComponent<Factory>().item);
+                                    interactable.GetComponent<Factory>().lastTime = GameManager.Instance.updateTime;
+                                    actualItems[i].transform.parent = spawnPoints[i].transform;
+                                    actualItems[i].transform.position = spawnPoints[i].transform.position;
+                                    numItemsHeld += 1;
+                                }
                                 break;
-                            case Statics.Items.GEAR:
-                                actualItems[i] = Instantiate(ItemManager.Instance.gear);
-                                break;
-                            case Statics.Items.SPRING:
-                                actualItems[i] = Instantiate(ItemManager.Instance.spring);
-                                break;
-                            case Statics.Items.SCREW:
-                                actualItems[i] = Instantiate(ItemManager.Instance.screw);
-                                break;
-                            case Statics.Items.OIL:
-                                //do some oily shit
-                                interactable.GetComponent<Factory>().TakeItem();
-                                break;
+                            }
                         }
-                        if (actualItems[i] != null) {
-                            interactable.GetComponent<Factory>().TakeItem();
-                            actualItems[i].transform.parent = spawnPoints[i].transform;
-                            actualItems[i].transform.position = spawnPoints[i].transform.position;
-                            numItemsHeld += 1;
-                        }
-                        break;
                     }
                 }
             }
@@ -106,4 +124,9 @@ public class PlayerController : MonoBehaviour {
             }
         }
 	}
+
+    IEnumerator SpeedUpCountDown() {
+        yield return new WaitForSeconds(10f);
+        WorldController.Instance.speed = 50f;
+    }
 }
