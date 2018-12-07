@@ -29,6 +29,7 @@ public class ComponentController : MonoBehaviour {
 
     private void attemptRepair()
     {
+        CanvasManager.Instance.HideBottomLeftText();
         Statics.Items[] currItems = PlayerController.Instance.inventory;
         for (int i = 0; i < currRepairItems.Length; i++)
         {

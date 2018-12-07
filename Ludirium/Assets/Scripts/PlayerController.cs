@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
     float nonOilySpeed = 30f;
     public bool isOily = false;
 
-    private ComponentController currComp;
+    public ComponentController currComp;
 
     private void Awake() {
         Instance = this;
@@ -38,7 +38,22 @@ public class PlayerController : MonoBehaviour {
             currComp = interactable.GetComponent<ComponentController>();
             if (currComp.isBroken)
             {
-                CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+                bool canWeFixIt = false;
+                foreach (Statics.Items item in currComp.currRepairItems) {
+                    if (item != Statics.Items.NONE && !canWeFixIt) {
+                        foreach (Statics.Items playerItem in inventory) {
+                            if (item == playerItem) {
+                                canWeFixIt = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (canWeFixIt) {
+                    CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+                } else {
+                    CanvasManager.Instance.ShowBottomLeftText("Unable to repair!");
+                }
             }
         } else if (other.tag == "Item") {
             canInteract = true;
@@ -62,7 +77,22 @@ public class PlayerController : MonoBehaviour {
             if (interactable.GetComponent<Gearbox>().isBroken())
             {
                 currComp = interactable.GetComponent<ComponentController>();
-                CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+                bool canWeFixIt = false;
+                foreach (Statics.Items item in currComp.currRepairItems) {
+                    if (item != Statics.Items.NONE && !canWeFixIt) {
+                        foreach (Statics.Items playerItem in inventory) {
+                            if (item == playerItem) {
+                                canWeFixIt = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (canWeFixIt) {
+                    CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+                } else {
+                    CanvasManager.Instance.ShowBottomLeftText("Unable to repair!");
+                }
             } else
             {
                 CanvasManager.Instance.ShowBottomLeftText("Press Q to wind the main spring");
@@ -82,6 +112,8 @@ public class PlayerController : MonoBehaviour {
                 prevInteractable = null;
                 if (currComp != null && currComp.isBroken) {
                     CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+                } else {
+                    CanvasManager.Instance.HideBottomLeftText();
                 }
             }
         }
