@@ -22,11 +22,13 @@ public class WorldController : MonoBehaviour {
         if (Input.GetAxis("Horizontal") > 0)
         {
             transform.Rotate(Vector3.forward * speed * Time.deltaTime);
+            PlayerController.Instance.GetComponent<SpriteRenderer>().flipX = true;
         }
 
         if (Input.GetAxis("Horizontal") < 0)
         {
             transform.Rotate(-Vector3.forward * speed * Time.deltaTime);
+            PlayerController.Instance.GetComponent<SpriteRenderer>().flipX = false;
         }
 
     }
