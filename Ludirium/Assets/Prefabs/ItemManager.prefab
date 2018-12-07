@@ -55,3 +55,7 @@ MonoBehaviour:
   spring: {fileID: 1789712881270612, guid: eba56579b30e07e48bba68a5b256d887, type: 2}
   screw: {fileID: 1811749821285506, guid: 6701a1d0d6e020741b991e87cf692d3a, type: 2}
   oil: {fileID: 1885422456005638, guid: b212a8ad876e0e24c89c88bc56a56189, type: 2}
+  gearNoBox: {fileID: 1234391729751664, guid: 77dac40bac0afea4fb95dffe53db88e1, type: 2}
+  springNoBox: {fileID: 1846715458805792, guid: d8e7bc62e6d046546bff36fbd264e53e,
+    type: 2}
+  screwNoBox: {fileID: 1898086451570708, guid: d8e4f801a5f7df341ad5f9d0f5c3742a, type: 2}
