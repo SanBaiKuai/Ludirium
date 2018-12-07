@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour {
 
     public bool canInteract = false;   // true if currently can interact with some object
     GameObject interactable;
-    GameObject[] inventory = new GameObject[3];
+    public GameObject[] inventory = new GameObject[3];
+    public Transform[] spawnPoints;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour {
             canInteract = true;
             interactable = other.gameObject;
             CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
-        } else if (other.tag == "Item") {
+        } else if (other.tag == "Factory") {
             canInteract = true;
             interactable = other.gameObject;
             CanvasManager.Instance.ShowBottomLeftText("Press Q to pick up");
@@ -37,11 +38,16 @@ public class PlayerController : MonoBehaviour {
     void Update () {
 		if (canInteract && Input.GetKeyDown(KeyCode.Q)) {
             // do the interaction shit here
-            //if (interactable.GetComponent<> != null) {
-
-            //} else if (interactable.GetComponent<Item> != null) {
-
-            //}
+            if (interactable.tag == "Factory") {
+                for (int i = 0; i < 3; i++) {
+                    if (inventory[i] == null) {
+                        inventory[i] = interactable.GetComponent<Factory>().item;
+                        inventory[i].transform.position = spawnPoints[i].transform.position;
+                        Instantiate(inventory[i]);
+                        break;
+                    }
+                }
+            }
         }
 	}
 }
