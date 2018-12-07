@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour {
     public GameObject[] componentList;
     public float energyStored;
     public float decayRate;
+    public bool gameOver;
 
     public int updateTime = 1;
     private int brokenItems;
@@ -18,34 +20,42 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        Time.timeScale = 1;
+        AudioManager.Instance.am.SetFloat("BGMVol", 0f);
         energyStored = 100f;
         decayRate = 0.5f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(energyStored <= 0)
-        {
-            if (!PlayerPrefs.HasKey("bestTime") || PlayerPrefs.GetInt("bestTime") < updateTime) {
-                PlayerPrefs.SetInt("bestTime", updateTime);
+        if (!gameOver) {
+            if (energyStored <= 0) {
+                if (!PlayerPrefs.HasKey("bestTime") || PlayerPrefs.GetInt("bestTime") < updateTime) {
+                    PlayerPrefs.SetInt("bestTime", updateTime);
+                }
+                StartCoroutine(AudioManager.Instance.PlayGameOver());
+                CanvasManager.Instance.GameOver();
+                gameOver = true;
+                Time.timeScale = 0;
+            }
+            if (Time.time >= updateTime) {
+                brokenItems = 0;
+                updateTime = Mathf.FloorToInt(Time.time) + 1;
+                foreach (GameObject component in componentList) {
+                    brokenItems += component.GetComponent<ComponentController>().decay();
+                }
+                energyStored -= decayRate * (1.0f + brokenItems);
+                CanvasManager.Instance.UpdateCurrTime(updateTime);
             }
         }
-        if(Time.time>= updateTime)
-        {
-            brokenItems = 0;
-            updateTime = Mathf.FloorToInt(Time.time) + 1;
-            foreach (GameObject component in componentList)
-            {
-                brokenItems += component.GetComponent<ComponentController>().decay();
-            }
-            energyStored -= decayRate * (1.0f + brokenItems);
-            CanvasManager.Instance.UpdateCurrTime(updateTime);
-        }
-		
 	}
 
     public void windUp()
     {
         energyStored = 100f;
+    }
+
+    public void Restart() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

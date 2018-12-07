@@ -7,7 +7,6 @@ public class Monkey : MonoBehaviour {
 
     private Animator anim;
     private ComponentController cc;
-    public AudioMixer am;
     bool isBroken;
 
     // Use this for initialization
@@ -41,16 +40,16 @@ public class Monkey : MonoBehaviour {
 
     IEnumerator TurnUp() {
         for (int i = 9; i >= 0; i--) {
-            am.SetFloat("BGMVol", i * (-5));
+            AudioManager.Instance.am.SetFloat("BGMVol", i * (-5));
             yield return new WaitForSeconds(0.1f);
         }
     }
 
     IEnumerator TurnDown() {
         for (int i = 0; i < 20; i++) {
-            am.SetFloat("BGMVol", i * (-2.5f));
+            AudioManager.Instance.am.SetFloat("BGMVol", i * (-2.5f));
             yield return new WaitForSeconds(0.1f);
         }
-        am.SetFloat("BGMVol", -80f);
+        AudioManager.Instance.am.SetFloat("BGMVol", -80f);
     }
 }

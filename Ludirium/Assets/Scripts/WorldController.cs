@@ -20,7 +20,7 @@ public class WorldController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (canMove) {
+        if (canMove && !GameManager.Instance.gameOver) {
             if (Input.GetAxis("Horizontal") > 0) {
                 transform.Rotate(Vector3.forward * speed * Time.deltaTime);
                 PlayerController.Instance.GetComponent<SpriteRenderer>().flipX = true;

@@ -15,6 +15,8 @@ public class CanvasManager : MonoBehaviour {
     private GameObject pauseTextObj;
     public bool paused;
     public Slider windSlider;
+    public Button pauseButton;
+    public GameObject gameOverMenu;
 
     private void Awake() {
         Instance = this;
@@ -87,5 +89,10 @@ public class CanvasManager : MonoBehaviour {
     public void TurnBright() {
         maskCircle.enabled = false;
         maskFull.enabled = false;
+    }
+
+    public void GameOver() {
+        pauseButton.interactable = false;
+        gameOverMenu.SetActive(true);
     }
 }
