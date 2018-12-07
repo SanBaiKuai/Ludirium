@@ -97,6 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayRate: 0
   health: 0
+  minTime: 5
+  maxTime: 15
   currRepairItemsCount: 0
   currRepairItems: 
   repairItems: 
@@ -114,6 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: 4
   spawnPoint: {fileID: 4450862983011262}
+  lastTime: 0
   interval: 1
 --- !u!212 &212985529633873346
 SpriteRenderer:
@@ -155,7 +158,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 12.8, y: 10.24}
+  m_Size: {x: 8.44, y: 6.77}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

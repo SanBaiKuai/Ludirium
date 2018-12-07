@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour {
     private static readonly int MAX_ITEMS_HELD = 3;
     public bool canInteract = false;   // true if currently can interact with some object
     public int numItemsHeld = 0;
-    GameObject interactable;
-    GameObject prevInteractable;
+    public GameObject interactable;
+    public GameObject prevInteractable;
     //public GameObject[] inventory = new GameObject[3];
     public Statics.Items[] inventory = new Statics.Items[MAX_ITEMS_HELD];
     public GameObject[] actualItems = new GameObject[MAX_ITEMS_HELD];
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
             } else {    // it's definitely a component
                 interactable = prevInteractable;
                 prevInteractable = null;
-                if (currComp.isBroken) {
+                if (currComp != null && currComp.isBroken) {
                     CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
                 }
             }
@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour {
                                     interactable.GetComponent<Factory>().lastTime = GameManager.Instance.updateTime;
                                     actualItems[i].transform.parent = spawnPoints[i].transform;
                                     actualItems[i].transform.position = spawnPoints[i].transform.position;
+                                    actualItems[i].GetComponent<BoxCollider>().enabled = false;
                                     numItemsHeld += 1;
                                 }
                                 break;
