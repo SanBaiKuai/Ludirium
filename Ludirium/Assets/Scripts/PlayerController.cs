@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject[] actualItems = new GameObject[MAX_ITEMS_HELD];
     public Transform[] spawnPoints;
     public float timeToFix = 2.5f;
+    float nonOilySpeed = 30f;
+    public bool isOily = false;
 
     private ComponentController currComp;
 
@@ -97,6 +99,7 @@ public class PlayerController : MonoBehaviour {
                             interactable = prevInteractable;
                             CanvasManager.Instance.ShowBottomLeftText("Gotta go fast!");
                             interactable.GetComponent<Factory>().lastTime = GameManager.Instance.updateTime;
+                            isOily = true;
                             WorldController.Instance.speed = 75f;
                             StartCoroutine("SpeedUpCountDown");
                         } else if (inventory[MAX_ITEMS_HELD - 1] == Statics.Items.NONE) {
@@ -148,13 +151,17 @@ public class PlayerController : MonoBehaviour {
                     }
                     numItemsHeld = 0;
                 }
+                nonOilySpeed = 30 - 5 * numItemsHeld;
             }
         }
-	}
+        if (!isOily) {
+            WorldController.Instance.speed = nonOilySpeed;
+        }
+    }
 
     IEnumerator SpeedUpCountDown() {
         yield return new WaitForSeconds(5f);
-        WorldController.Instance.speed = 50f;
+        WorldController.Instance.speed = nonOilySpeed;
     }
 
     public IEnumerator FixShit() {

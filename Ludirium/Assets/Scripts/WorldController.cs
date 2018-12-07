@@ -6,7 +6,7 @@ public class WorldController : MonoBehaviour {
 
     public static WorldController Instance { get; private set; }
 
-    public float speed = 50.0f;
+    public float speed = 30.0f;
     public bool canMove = true;
 
     private void Awake() {

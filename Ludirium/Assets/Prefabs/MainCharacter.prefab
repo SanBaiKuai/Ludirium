@@ -218,6 +218,7 @@ MonoBehaviour:
   - {fileID: 4793950150485290}
   - {fileID: 4801480476333940}
   timeToFix: 2.5
+  isOily: 0
 --- !u!135 &135158071229630108
 SphereCollider:
   m_ObjectHideFlags: 1
