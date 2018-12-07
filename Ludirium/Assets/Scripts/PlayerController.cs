@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
     public GameObject[] actualItems = new GameObject[MAX_ITEMS_HELD];
     public Transform[] spawnPoints;
 
+    private ComponentController currComp;
 	// Use this for initialization
 	void Start () {
 		for (int i = 0; i < inventory.Length; i++) {
@@ -24,8 +25,12 @@ public class PlayerController : MonoBehaviour {
         if (other.tag == "Component") {
             canInteract = true;
             interactable = other.gameObject;
-            CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
-        } else if (other.tag == "Factory") {
+            currComp = interactable.GetComponent<ComponentController>();
+            if (currComp.isBroken)
+            {
+                CanvasManager.Instance.ShowBottomLeftText("Press Q to repair");
+            }
+        } else if (other.tag == "Item") {
             canInteract = true;
             if (numItemsHeld == MAX_ITEMS_HELD) {
                 CanvasManager.Instance.ShowBottomLeftText("Inventory full!");
@@ -54,7 +59,7 @@ public class PlayerController : MonoBehaviour {
     void Update () {
 		if (canInteract && interactable != null && Input.GetKeyDown(KeyCode.Q)) {
             // do the interaction shit here
-            if (interactable.tag == "Factory" && inventory[MAX_ITEMS_HELD - 1] == Statics.Items.NONE) {
+            if (interactable.tag == "Item" && inventory[MAX_ITEMS_HELD - 1] == Statics.Items.NONE) {
                 for (int i = 0; i < MAX_ITEMS_HELD; i++) {
                     if (inventory[i] == Statics.Items.NONE) {
                         inventory[i] = interactable.GetComponent<Factory>().item;
@@ -84,6 +89,12 @@ public class PlayerController : MonoBehaviour {
                         break;
                     }
                 }
+            }
+
+            else if (interactable.tag == "Component" && currComp.isBroken)
+            {
+                //Debug.Log("Attempting Repair");
+                currComp.repair(inventory);
             }
 
             else if (interactable.tag == "Recycling" && inventory[0] != Statics.Items.NONE) {

@@ -25,8 +25,7 @@ public class ComponentController : MonoBehaviour {
 
     private void attemptRepair(Statics.Items[] currItems)
     {
-        int tempRepairItemsCount = currRepairItemsCount;
-        for (int i = 0; i < tempRepairItemsCount; i++)
+        for (int i = 0; i < currRepairItems.Length; i++)
         {
             Statics.Items repairItem = currRepairItems[i];
             if (repairItem != Statics.Items.NONE)
