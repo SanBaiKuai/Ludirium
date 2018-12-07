@@ -14,6 +14,7 @@ public class CanvasManager : MonoBehaviour {
     public Image maskCircle;
     private GameObject pauseTextObj;
     public bool paused;
+    public Slider windSlider;
 
     private void Awake() {
         Instance = this;
@@ -32,7 +33,12 @@ public class CanvasManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        windSlider.value = GameManager.Instance.energyStored;
+        if (GameManager.Instance.energyStored <= 25) {
+            windSlider.GetComponentInChildren<Image>().color = Color.red;
+        } else {
+            windSlider.GetComponentInChildren<Image>().color = Color.green;
+        }
 	}
 
     // call this from gamemanager
