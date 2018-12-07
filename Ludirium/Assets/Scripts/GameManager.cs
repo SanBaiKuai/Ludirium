@@ -26,7 +26,9 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         if(energyStored <= 0)
         {
-            PlayerPrefs.SetInt("bestTime", updateTime);
+            if (!PlayerPrefs.HasKey("bestTime") || PlayerPrefs.GetInt("bestTime") < updateTime) {
+                PlayerPrefs.SetInt("bestTime", updateTime);
+            }
         }
         if(Time.time>= updateTime)
         {

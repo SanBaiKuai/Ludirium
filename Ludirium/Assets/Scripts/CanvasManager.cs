@@ -24,7 +24,7 @@ public class CanvasManager : MonoBehaviour {
     void Start () {
 		if (PlayerPrefs.HasKey("bestTime")) {
             // set best time text
-            bestTime.text = "Best Time\n" + PlayerPrefs.GetInt("bestTime") / 60 + (PlayerPrefs.GetInt("bestTime") % 60).ToString("00");
+            bestTime.text = "Best Time\n" + PlayerPrefs.GetInt("bestTime") / 60 + ":" + (PlayerPrefs.GetInt("bestTime") % 60).ToString("00");
         }
         else {
             bestTime.text = "Best Time\n--:--";
