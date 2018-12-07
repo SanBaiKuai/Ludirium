@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114996534192398066}
   m_Layer: 0
   m_Name: Gearbox
-  m_TagString: Untagged
+  m_TagString: Component
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,13 +36,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1343913124380686}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4691738, y: 0.45098034, z: 0}
-  m_LocalScale: {x: 0.03538331, y: 0.03538331, z: 0.03538331}
+  m_LocalRotation: {x: -0, y: -0, z: 0.06549222, w: 0.99785316}
+  m_LocalPosition: {x: -4.0699997, y: 0.86999893, z: 0}
+  m_LocalScale: {x: 0.32154566, y: 0.32154566, z: 0.32154578}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7.51}
 --- !u!95 &95416606881356168
 Animator:
   serializedVersion: 3
@@ -74,6 +74,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayRate: 0
   health: 0
+  minTime: 5
+  maxTime: 15
   currRepairItemsCount: 0
   currRepairItems: 
   repairItems: 
