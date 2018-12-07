@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour {
         } else if (other.tag == "Item") {
             canInteract = true;
             prevInteractable = interactable;
-            if (numItemsHeld == MAX_ITEMS_HELD) {
+            if (numItemsHeld == MAX_ITEMS_HELD && !other.name.Contains("Can")) {
                 CanvasManager.Instance.ShowBottomLeftText("Inventory full!");
             } else {
                 interactable = other.gameObject;
@@ -122,6 +122,8 @@ public class PlayerController : MonoBehaviour {
                                     actualItems[i].transform.parent = spawnPoints[i].transform;
                                     actualItems[i].transform.position = spawnPoints[i].transform.position;
                                     actualItems[i].GetComponent<BoxCollider>().enabled = false;
+                                    actualItems[i].GetComponent<SpriteRenderer>().sortingLayerName = "HeldItems";
+                                    actualItems[i].GetComponent<SpriteRenderer>().sortingOrder = i;
                                     numItemsHeld += 1;
                                 }
                                 break;
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
     IEnumerator SpeedUpCountDown() {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(5f);
         WorldController.Instance.speed = 50f;
     }
 }

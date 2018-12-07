@@ -43,8 +43,20 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BG
+    uniqueID: 3047644789
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Components
+    uniqueID: 3063930219
+    locked: 0
+  - name: SpawnedItems
+    uniqueID: 1628338441
+    locked: 0
+  - name: HeldItems
+    uniqueID: 3587816993
     locked: 0
   - name: MC
     uniqueID: 1961816101

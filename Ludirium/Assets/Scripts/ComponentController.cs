@@ -50,6 +50,7 @@ public class ComponentController : MonoBehaviour {
                             PlayerController.Instance.actualItems[k - 1] = PlayerController.Instance.actualItems[k];
                             PlayerController.Instance.actualItems[k - 1].transform.parent = PlayerController.Instance.spawnPoints[k - 1];
                             PlayerController.Instance.actualItems[k - 1].transform.position = PlayerController.Instance.spawnPoints[k - 1].position;
+                            PlayerController.Instance.actualItems[k - 1].GetComponent<SpriteRenderer>().sortingOrder = k - 1;
                             if (k == PlayerController.Instance.numItemsHeld - 1) {
                                 PlayerController.Instance.inventory[k] = Statics.Items.NONE;
                                 PlayerController.Instance.actualItems[k] = null;
