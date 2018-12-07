@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    public static PlayerController Instance { get; private set; }
     private static readonly int MAX_ITEMS_HELD = 3;
     public bool canInteract = false;   // true if currently can interact with some object
     public int numItemsHeld = 0;
@@ -15,8 +16,13 @@ public class PlayerController : MonoBehaviour {
     public Transform[] spawnPoints;
 
     private ComponentController currComp;
-	// Use this for initialization
-	void Start () {
+
+    private void Awake() {
+        Instance = this;
+    }
+
+    // Use this for initialization
+    void Start () {
 		for (int i = 0; i < inventory.Length; i++) {
             inventory[i] = Statics.Items.NONE;
         }
@@ -115,26 +121,7 @@ public class PlayerController : MonoBehaviour {
             else if (interactable.tag == "Component" && currComp.isBroken)
             {
                 //Debug.Log("Attempting Repair");
-                currComp.repair(inventory);
-                for (int i = 0; i < MAX_ITEMS_HELD; i++) {
-                    if (inventory[i] == Statics.Items.NONE) {
-                        if (actualItems[i] != null) {
-                            Destroy(actualItems[i]);
-                            numItemsHeld -= 1;
-                            if (i < MAX_ITEMS_HELD - 1 && inventory[i + 1] != Statics.Items.NONE) {
-                                for (int j = i + 1; j < MAX_ITEMS_HELD; j++) {
-                                    if (inventory[j] == Statics.Items.NONE) {
-                                        break;
-                                    }
-                                    inventory[j - 1] = inventory[j];
-                                    actualItems[j - 1] = actualItems[j];
-                                    actualItems[j - 1].transform.position = spawnPoints[j - 1].position;
-                                }
-                            }
-                        }
-                        break;
-                    }
-                }
+                currComp.repair();
             }
 
             else if (interactable.tag == "Recycling" && inventory[0] != Statics.Items.NONE) {

@@ -25,8 +25,9 @@ public class ComponentController : MonoBehaviour {
 	void Update () {
 	}
 
-    private void attemptRepair(Statics.Items[] currItems)
+    private void attemptRepair()
     {
+        Statics.Items[] currItems = PlayerController.Instance.inventory;
         for (int i = 0; i < currRepairItems.Length; i++)
         {
             Statics.Items repairItem = currRepairItems[i];
@@ -34,10 +35,27 @@ public class ComponentController : MonoBehaviour {
             {
                 for (int j = 0; j < currItems.Length; j++)
                 {
-                    Statics.Items currItem = currItems[j];
+                    Statics.Items currItem = PlayerController.Instance.inventory[j];
                     if (repairItem == currItem)
                     {
-                        currItems[j] = Statics.Items.NONE;
+                        PlayerController.Instance.inventory[j] = Statics.Items.NONE;
+                        Destroy(PlayerController.Instance.actualItems[j]);
+                        for (int k = j + 1; k < PlayerController.Instance.numItemsHeld; k++) {
+                            if (PlayerController.Instance.inventory[k] == Statics.Items.NONE) {
+                                break;
+                            }
+                            PlayerController.Instance.inventory[k - 1] = PlayerController.Instance.inventory[k];
+                            PlayerController.Instance.actualItems[k - 1] = PlayerController.Instance.actualItems[k];
+                            PlayerController.Instance.actualItems[k - 1].transform.parent = PlayerController.Instance.spawnPoints[k - 1];
+                            PlayerController.Instance.actualItems[k - 1].transform.position = PlayerController.Instance.spawnPoints[k - 1].position;
+                            if (k == PlayerController.Instance.numItemsHeld - 1) {
+                                PlayerController.Instance.inventory[k] = Statics.Items.NONE;
+                                PlayerController.Instance.actualItems[k] = null;
+                                break;
+                            }
+                        }
+                        PlayerController.Instance.numItemsHeld--;
+
                         currRepairItems[i] = Statics.Items.NONE;
                         currRepairItemsCount--;
                         break;
@@ -48,9 +66,9 @@ public class ComponentController : MonoBehaviour {
     }
 
     //returns true if repair is successful, returns 0 otherwise
-    public void repair(Statics.Items[] currItems)
+    public void repair()
     {
-        attemptRepair(currItems);
+        attemptRepair();
         if(currRepairItemsCount == 0)
             {
                 isBroken = false;
