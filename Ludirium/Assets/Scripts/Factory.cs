@@ -16,6 +16,7 @@ public class Factory : MonoBehaviour {
             if (!hasItem) {
                 go = Instantiate(ItemManager.Instance.GetGameObjectFromEnum(item), spawnPoint);
                 go.transform.position = spawnPoint.position;
+                go.tag = "Item";
                 hasItem = true;
             }
             lastTime = GameManager.Instance.updateTime;
