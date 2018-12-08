@@ -6,9 +6,11 @@ public class SmokeManager : MonoBehaviour {
 
     public static SmokeManager Instance { get; private set; }
     public GameObject smoke;
+    public AudioSource ding;
 
     private void Awake() {
         Instance = this;
+        ding = GetComponent<AudioSource>();
     }
 
     public IEnumerator StartSmoke() {
@@ -16,6 +18,10 @@ public class SmokeManager : MonoBehaviour {
         for (int i = 0; i < numDivisions; i++) {
             Instantiate(smoke, new Vector3(Random.Range(-3f, 3f), Random.Range(-1f, 4f), 0f), Quaternion.identity);
             yield return new WaitForSeconds(0.02f);
+            if (i % 17 == 0) {
+                ding.Play();
+            }
         }
+        ding.Play();
     }
 }

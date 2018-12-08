@@ -9,7 +9,7 @@ public class Smoke : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = transform.position;
+        rb.velocity = 3 * transform.position;
         StartCoroutine(KillSelf());
 	}
 	
