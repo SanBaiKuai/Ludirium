@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
     public float energyStored;
     public float decayRate;
     public bool gameOver;
+    public bool MainSpringBroken;
 
     public int updateTime = 1;
     private int brokenItems;
@@ -20,10 +21,11 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        updateTime = 1;
         Time.timeScale = 1;
         AudioManager.Instance.am.SetFloat("BGMVol", 0f);
         energyStored = 100f;
-        decayRate = 0.5f;
+        decayRate = 1f;
 	}
 	
 	// Update is called once per frame
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour {
                 foreach (GameObject component in componentList) {
                     brokenItems += component.GetComponent<ComponentController>().decay();
                 }
-                energyStored -= decayRate * (1.0f + brokenItems);
+                energyStored -= decayRate * (1.0f + (1.5f * brokenItems));
                 CanvasManager.Instance.UpdateCurrTime(updateTime);
             }
         }

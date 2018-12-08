@@ -20,12 +20,14 @@ public class Gearbox : MonoBehaviour {
             Break();
         } else
         {
+            GameManager.Instance.MainSpringBroken = false;
             StartCoroutine(Fix());
         }
 		
 	}
 
     public void Break() {
+        GameManager.Instance.MainSpringBroken = true;
         anim.enabled = false;
     }
 

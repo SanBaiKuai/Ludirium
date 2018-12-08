@@ -26,20 +26,20 @@ public class CanvasManager : MonoBehaviour {
     void Start () {
 		if (PlayerPrefs.HasKey("bestTime")) {
             // set best time text
-            bestTime.text = "Best Time\n" + PlayerPrefs.GetInt("bestTime") / 60 + ":" + (PlayerPrefs.GetInt("bestTime") % 60).ToString("00");
+            bestTime.text = "Best Time: " + PlayerPrefs.GetInt("bestTime") / 60 + ":" + (PlayerPrefs.GetInt("bestTime") % 60).ToString("00");
         }
         else {
-            bestTime.text = "Best Time\n--:--";
+            bestTime.text = "Best Time: --:--";
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
         windSlider.value = GameManager.Instance.energyStored;
-        if (GameManager.Instance.energyStored <= 25) {
-            windSlider.GetComponentInChildren<Image>().color = Color.red;
+        if (GameManager.Instance.MainSpringBroken) {
+            windSlider.GetComponentsInChildren<Image>()[1].color = Color.red;
         } else {
-            windSlider.GetComponentInChildren<Image>().color = Color.green;
+            windSlider.GetComponentsInChildren<Image>()[1].color = Color.green;
         }
 	}
 
@@ -51,6 +51,7 @@ public class CanvasManager : MonoBehaviour {
 
     public void ShowBottomLeftText() {
         bottomLeftText.enabled = true;
+        bottomLeftText.color = Color.white;
     }
 
     public void ShowBottomLeftText(string msg) {
