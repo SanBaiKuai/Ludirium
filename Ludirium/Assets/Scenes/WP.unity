@@ -228,6 +228,7 @@ MonoBehaviour:
   energyStored: 100
   decayRate: 0.5
   gameOver: 0
+  MainSpringBroken: 0
   updateTime: 1
 --- !u!4 &665941531
 Transform:
