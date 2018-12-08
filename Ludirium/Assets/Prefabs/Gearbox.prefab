@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 95416606881356168}
   - component: {fileID: 114385399400605064}
   - component: {fileID: 114996534192398066}
+  - component: {fileID: 65444433283381806}
   m_Layer: 0
   m_Name: Gearbox
   m_TagString: MainSpring
@@ -101,6 +102,18 @@ Transform:
   m_Father: {fileID: 4472954363625200}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65444433283381806
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1343913124380686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12.729999, y: 9.0199995, z: 0.19999999}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95416606881356168
 Animator:
   serializedVersion: 3
@@ -136,7 +149,7 @@ MonoBehaviour:
   maxTime: 15
   currRepairItemsCount: 0
   currRepairItems: 
-  repairItems: 
+  repairItems: 010000000200000003000000
   positions:
   - {fileID: 4992884763133350}
   - {fileID: 4547795657273474}
