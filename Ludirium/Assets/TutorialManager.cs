@@ -62,15 +62,16 @@ public class TutorialManager : MonoBehaviour {
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Skip();
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && currPageNum < pages.Length - 1) {
-            GoNext();
-        }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && currPageNum > 0) {
-            GoPrev();
+        if (image.enabled) {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                Skip();
+            }
+            if (Input.GetKeyDown(KeyCode.RightArrow) && currPageNum < pages.Length - 1) {
+                GoNext();
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && currPageNum > 0) {
+                GoPrev();
+            }
         }
     }
 }
