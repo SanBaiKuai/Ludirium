@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 
     public int updateTime = 1;
     private int brokenItems;
+    private float offSet;
 
     private void Awake() {
         Instance = this;
@@ -22,10 +23,12 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         updateTime = 1;
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
+        offSet = Time.time;
         AudioManager.Instance.am.SetFloat("BGMVol", 0f);
         energyStored = 100f;
         decayRate = 1f;
+        gameOver = false;
 	}
 	
 	// Update is called once per frame
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour {
                     brokenItems += component.GetComponent<ComponentController>().decay();
                 }
                 energyStored -= decayRate * (1.0f + (1.5f * brokenItems));
-                CanvasManager.Instance.UpdateCurrTime(updateTime);
+                CanvasManager.Instance.UpdateCurrTime(updateTime - (int)offSet);
             }
         }
 	}
@@ -58,6 +61,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Restart() {
+        updateTime = 1;
+        //Time.timeScale = 1;
+        offSet = Time.time;
+        AudioManager.Instance.am.SetFloat("BGMVol", 0f);
+        energyStored = 100f;
+        decayRate = 1f;
+        gameOver = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

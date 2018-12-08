@@ -41,6 +41,10 @@ public class CanvasManager : MonoBehaviour {
         } else {
             windSlider.GetComponentsInChildren<Image>()[1].color = Color.green;
         }
+        if (paused && Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+        }
 	}
 
     // call this from gamemanager

@@ -53,4 +53,12 @@ public class TutorialManager : MonoBehaviour {
         next.gameObject.SetActive(false);
         skipButton.gameObject.SetActive(false);
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Skip();
+        }
+    }
 }
