@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: d473354608a05164d88b16a244ac725a
+guid: 569cbb7d9ddf973409cc8690aa9f1877
 TextureImporter:
   fileIDToRecycleName:
-    21300000: sky base_0
+    21300000: sky base (2)_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -85,7 +85,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sky base_0
+      name: sky base (2)_0
       rect:
         serializedVersion: 2
         x: 163
@@ -99,7 +99,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1cfaf88a72c3ebd409b183b79ad3e691
+      spriteID: 77c1628d8e12f6943bb58ce8b04f68ab
       vertices: []
       indices: 
       edges: []
@@ -107,7 +107,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 29aed29c53527fa4da83cf4df63af088
+    spriteID: 605a2570b503a8643b1e004ac5a1fb0c
     vertices: []
     indices: 
     edges: []
