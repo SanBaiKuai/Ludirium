@@ -33,7 +33,10 @@ public class TutorialManager : MonoBehaviour {
         pages[currPageNum].SetActive(true);
         if (currPageNum == pages.Length - 1) {
             next.interactable = false;
+        } else {
+            next.interactable = true;
         }
+        prev.interactable = true;
     }
 
     public void GoPrev() {
@@ -42,7 +45,10 @@ public class TutorialManager : MonoBehaviour {
         pages[currPageNum].SetActive(true);
         if (currPageNum == 0) {
             prev.interactable = false;
+        } else {
+            prev.interactable = true;
         }
+        next.interactable = true;
     }
 
     public void Skip() {
@@ -59,6 +65,12 @@ public class TutorialManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Skip();
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow) && currPageNum < pages.Length - 1) {
+            GoNext();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && currPageNum > 0) {
+            GoPrev();
         }
     }
 }
