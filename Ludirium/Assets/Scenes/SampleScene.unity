@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &271846844 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1535990886628418, guid: eb7347615ab5d794493a4e6b2ac52769,
+    type: 2}
+  m_PrefabInternal: {fileID: 1126874493}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,6 +279,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 488031c245ebf864583c2bb8108f1020, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &619887235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1864858725520170, guid: eb7347615ab5d794493a4e6b2ac52769,
+    type: 2}
+  m_PrefabInternal: {fileID: 1126874493}
 --- !u!1 &665941529
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,12 +312,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componentList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2009503054}
+  - {fileID: 1320673341}
+  - {fileID: 1233431433}
+  - {fileID: 1542834821}
+  - {fileID: 619887235}
+  - {fileID: 271846844}
   energyStored: 100
   decayRate: 0.5
   gameOver: 0
@@ -556,6 +566,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 1441028837831230, guid: eb7347615ab5d794493a4e6b2ac52769, type: 2}
+      propertyPath: m_TagString
+      value: MainSpring
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb7347615ab5d794493a4e6b2ac52769, type: 2}
   m_IsPrefabAsset: 0
@@ -605,3 +619,23 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50520515169a0754c85f054bdd6456b6, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1233431433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1441028837831230, guid: eb7347615ab5d794493a4e6b2ac52769,
+    type: 2}
+  m_PrefabInternal: {fileID: 1126874493}
+--- !u!1 &1320673341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1450976382462570, guid: eb7347615ab5d794493a4e6b2ac52769,
+    type: 2}
+  m_PrefabInternal: {fileID: 1126874493}
+--- !u!1 &1542834821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1193017450710428, guid: eb7347615ab5d794493a4e6b2ac52769,
+    type: 2}
+  m_PrefabInternal: {fileID: 1126874493}
+--- !u!1 &2009503054 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1182661921524852, guid: eb7347615ab5d794493a4e6b2ac52769,
+    type: 2}
+  m_PrefabInternal: {fileID: 1126874493}
