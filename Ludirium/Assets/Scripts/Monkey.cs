@@ -29,10 +29,12 @@ public class Monkey : MonoBehaviour {
 
     public void Break() {
         anim.SetBool("Broken", true);
+        StopCoroutine(TurnUp());
         StartCoroutine(TurnDown());
     }
 
     public IEnumerator Fix() {
+        StopCoroutine(TurnDown());
         StartCoroutine(TurnUp());
         yield return new WaitForSeconds(PlayerController.Instance.timeToFix);
         anim.SetBool("Broken", false);
